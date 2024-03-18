@@ -24,17 +24,26 @@ public class PlayerInteractions : MonoBehaviour
         if (Physics.Raycast(ray, out _hit, distanceOfRaycast))
         {
 
-            if (Input.GetButton("Fire1") && _hit.transform.CompareTag("Rotatable"))
+            if (Input.GetButtonDown("Fire1") && _hit.transform.CompareTag("Rotatable"))
             {
 
                 _hit.transform.gameObject.GetComponent<RotateObject>().ChangeSpin();
 
             }
 
-            if (Input.GetButton("Fire1") && _hit.transform.CompareTag("ShowHideTrigger"))
+            if (Input.GetButtonDown("Fire1") && _hit.transform.CompareTag("ShowHideTrigger"))
             {
 
                 _hit.transform.gameObject.GetComponent<ShowHideObject>().ChangeActive();
+
+            }
+
+            if (Input.GetButton("Fire1") && _hit.transform.CompareTag("TeleportSpot"))
+            {
+
+                Debug.Log(_hit.transform.position);
+
+                GameObject.FindWithTag("Player").transform.position = _hit.transform.position;
 
             }
 
